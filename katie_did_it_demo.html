@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Katie Did It Cleaning Co.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Patrick+Hand&display=swap');
+
+  :root {
+    --pink:#f36aa4;
+    --pink-dark:#d94f8e;
+    --pink-soft:#ffd8e8;
+    --aqua:#8ed8d3;
+    --aqua-soft:#dff7f4;
+    --cream:#fffaf2;
+    --paper:#fffdf8;
+    --ink:#171717;
+    --yellow:#ffd95e;
+    --line:#1f1f1f;
+  }
+
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    margin:0;
+    color:var(--ink);
+    font-family:'Nunito',system-ui,sans-serif;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(243,106,164,.08) 0 2px, transparent 3px),
+      radial-gradient(circle at 82% 20%, rgba(142,216,211,.10) 0 2px, transparent 3px),
+      linear-gradient(var(--cream), #fff);
+    background-size:38px 38px, 48px 48px, auto;
+  }
+
+  .page {
+    overflow:hidden;
+  }
+
+  .topbar {
+    background:var(--ink);
+    color:#fff;
+    padding:9px 18px;
+    text-align:center;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.2px;
+  }
+
+  nav {
+    position:sticky;
+    top:0;
+    z-index:10;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:14px 6vw;
+    background:rgba(255,253,248,.94);
+    backdrop-filter:blur(14px);
+    border-bottom:2px solid rgba(23,23,23,.08);
+  }
+
+  .brand {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Patrick Hand',cursive;
+    font-size:28px;
+    font-weight:800;
+    white-space:nowrap;
+  }
+  .bee { transform:rotate(-8deg); display:inline-block; }
+
+  .navlinks {
+    display:flex;
+    align-items:center;
+    gap:22px;
+  }
+  .navlinks a {
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:800;
+    font-size:14px;
+  }
+
+  .sketch-btn {
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    min-height:48px;
+    padding:11px 20px;
+    color:var(--ink);
+    background:var(--pink);
+    text-decoration:none;
+    font-family:'Patrick Hand',cursive;
+    font-size:21px;
+    font-weight:700;
+    border:3px solid var(--ink);
+    border-radius:18px 11px 17px 10px;
+    box-shadow:4px 5px 0 var(--ink);
+    transform:rotate(-1deg);
+    transition:.15s ease;
+  }
+  .sketch-btn::before {
+    content:"";
+    position:absolute;
+    inset:4px -5px -5px 4px;
+    border:1.5px dashed rgba(23,23,23,.35);
+    border-radius:14px 19px 11px 16px;
+    pointer-events:none;
+  }
+  .sketch-btn:hover {
+    transform:rotate(1deg) translateY(-2px);
+    box-shadow:5px 7px 0 var(--ink);
+  }
+  .sketch-btn.alt { background:var(--aqua); transform:rotate(1deg); }
+  .sketch-btn.light { background:var(--paper); }
+
+  .hero {
+    min-height:78vh;
+    padding:70px 6vw 54px;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:54px;
+    align-items:center;
+    position:relative;
+  }
+
+  .hero::before {
+    content:"♡";
+    position:absolute;
+    left:3.5vw; top:25px;
+    font-family:'Patrick Hand';
+    font-size:46px;
+    color:var(--pink);
+    transform:rotate(-12deg);
+  }
+  .hero::after {
+    content:"✦  ✧";
+    position:absolute;
+    right:7vw; bottom:24px;
+    font-size:32px;
+    color:var(--yellow);
+    transform:rotate(8deg);
+  }
+
+  .eyebrow {
+    display:inline-block;
+    font-family:'Patrick Hand',cursive;
+    font-size:22px;
+    background:var(--aqua-soft);
+    padding:6px 14px;
+    border:2px solid var(--ink);
+    border-radius:9px 15px 8px 13px;
+    transform:rotate(-1.5deg);
+    margin-bottom:16px;
+  }
+
+  h1 {
+    font-family:'Patrick Hand',cursive;
+    font-size:clamp(54px,8vw,104px);
+    line-height:.87;
+    letter-spacing:-2px;
+    margin:0;
+    max-width:820px;
+  }
+  h1 .pink { color:var(--pink-dark); }
+  .hero p {
+    max-width:650px;
+    font-size:19px;
+    line-height:1.65;
+    margin:24px 0 28px;
+  }
+
+  .hero-actions { display:flex; gap:18px; flex-wrap:wrap; }
+
+  .hero-card {
+    position:relative;
+    background:var(--paper);
+    padding:18px;
+    border:3px solid var(--ink);
+    border-radius:23px 16px 25px 18px;
+    box-shadow:10px 12px 0 var(--pink-soft);
+    transform:rotate(1.2deg);
+  }
+  .hero-card .frame {
+    border:2px dashed var(--ink);
+    border-radius:16px 22px 13px 20px;
+    min-height:430px;
+    background:
+      linear-gradient(140deg, rgba(243,106,164,.2), rgba(142,216,211,.22)),
+      var(--paper);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:32px;
+    position:relative;
+  }
+  .mascot {
+    font-size:88px;
+    margin-bottom:8px;
+  }
+  .hero-card h3 {
+    font-family:'Patrick Hand';
+    font-size:40px;
+    margin:4px 0;
+  }
+  .hero-card p { margin:0; font-size:16px; }
+  .tape {
+    position:absolute;
+    width:95px; height:27px;
+    background:rgba(255,217,94,.72);
+    top:-11px; left:50%;
+    transform:translateX(-50%) rotate(-4deg);
+    border:1px solid rgba(0,0,0,.08);
+  }
+
+  .section {
+    padding:82px 6vw;
+  }
+  .section-title {
+    text-align:center;
+    max-width:720px;
+    margin:0 auto 44px;
+  }
+  .section-title small {
+    font-family:'Patrick Hand';
+    font-size:22px;
+    color:var(--pink-dark);
+  }
+  .section-title h2 {
+    font-family:'Patrick Hand';
+    font-size:clamp(42px,6vw,66px);
+    margin:4px 0 10px;
+    line-height:1;
+  }
+  .section-title p { color:#555; line-height:1.65; }
+
+  .welcome {
+    background:var(--pink-soft);
+    position:relative;
+  }
+  .welcome-inner {
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:48px;
+    align-items:center;
+    max-width:1180px;
+    margin:auto;
+  }
+  .note-card {
+    background:var(--paper);
+    border:3px solid var(--ink);
+    padding:28px;
+    border-radius:15px 22px 14px 20px;
+    box-shadow:7px 8px 0 var(--ink);
+    transform:rotate(-1deg);
+  }
+  .note-card h2 {
+    font-family:'Patrick Hand';
+    font-size:52px;
+    margin:0 0 8px;
+  }
+  .note-card p { line-height:1.7; }
+  .bullets {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .bullet {
+    background:var(--paper);
+    border:2px solid var(--ink);
+    border-radius:13px 8px 15px 10px;
+    padding:18px;
+    min-height:120px;
+    transform:rotate(.5deg);
+  }
+  .bullet:nth-child(even) { transform:rotate(-.7deg); }
+  .bullet strong {
+    display:block;
+    font-family:'Patrick Hand';
+    font-size:25px;
+    margin:5px 0;
+  }
+
+  .services-grid {
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  .service {
+    padding:24px;
+    background:var(--paper);
+    border:3px solid var(--ink);
+    border-radius:19px 12px 24px 13px;
+    box-shadow:5px 6px 0 rgba(23,23,23,.95);
+    position:relative;
+  }
+  .service:nth-child(2n) { transform:rotate(.6deg); }
+  .service:nth-child(3n) { transform:rotate(-.6deg); }
+  .service .icon { font-size:40px; }
+  .service h3 {
+    font-family:'Patrick Hand';
+    font-size:31px;
+    margin:10px 0 5px;
+  }
+  .service p { color:#555; line-height:1.55; margin:0 0 14px; }
+  .scribble-link {
+    font-family:'Patrick Hand';
+    font-size:21px;
+    color:var(--pink-dark);
+    text-decoration:underline 3px wavy var(--aqua);
+    text-underline-offset:4px;
+  }
+
+  .special {
+    background:var(--aqua-soft);
+  }
+  .special-box {
+    max-width:1050px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr .8fr;
+    gap:36px;
+    align-items:center;
+    background:var(--paper);
+    border:3px solid var(--ink);
+    border-radius:26px 16px 22px 19px;
+    padding:38px;
+    box-shadow:10px 11px 0 var(--pink);
+  }
+  .special-box h2 {
+    font-family:'Patrick Hand';
+    font-size:58px;
+    margin:0 0 12px;
+  }
+  .price {
+    font-family:'Patrick Hand';
+    font-size:74px;
+    color:var(--pink-dark);
+    line-height:1;
+  }
+  .special-list { padding-left:20px; line-height:1.8; }
+
+  .gallery-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    max-width:1200px;
+    margin:auto;
+  }
+  .gallery-grid figure {
+    margin:0;
+    background:var(--paper);
+    border:3px solid var(--ink);
+    padding:9px 9px 28px;
+    box-shadow:4px 5px 0 var(--ink);
+  }
+  .gallery-grid figure:nth-child(odd) { transform:rotate(-1.2deg); }
+  .gallery-grid figure:nth-child(even) { transform:rotate(1.1deg); }
+  .gallery-grid img {
+    width:100%;
+    height:330px;
+    object-fit:cover;
+    object-position:center top;
+    display:block;
+  }
+  .gallery-grid figcaption {
+    text-align:center;
+    font-family:'Patrick Hand';
+    font-size:20px;
+    margin-top:9px;
+  }
+
+  .cta {
+    padding:90px 6vw;
+    text-align:center;
+    background:var(--ink);
+    color:#fff;
+    position:relative;
+  }
+  .cta h2 {
+    font-family:'Patrick Hand';
+    font-size:clamp(46px,7vw,76px);
+    line-height:1;
+    margin:0 auto 14px;
+    max-width:860px;
+  }
+  .cta p { color:#ddd; max-width:640px; margin:0 auto 28px; line-height:1.6; }
+  .cta .sketch-btn { background:var(--pink); }
+
+  footer {
+    background:#111;
+    color:#ddd;
+    padding:28px 6vw;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+    font-size:13px;
+  }
+
+  @media (max-width:900px) {
+    .navlinks a:not(.sketch-btn) { display:none; }
+    .hero, .welcome-inner, .special-box {
+      grid-template-columns:1fr;
+    }
+    .hero { padding-top:54px; }
+    .services-grid { grid-template-columns:1fr 1fr; }
+    .gallery-grid { grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width:580px) {
+    nav { padding:10px 16px; }
+    .brand { font-size:22px; }
+    .navlinks .sketch-btn { min-height:40px; padding:7px 12px; font-size:18px; }
+    .hero { padding:55px 20px 42px; gap:32px; }
+    .hero p { font-size:17px; }
+    .section { padding:64px 20px; }
+    .bullets, .services-grid { grid-template-columns:1fr; }
+    .gallery-grid { grid-template-columns:1fr 1fr; gap:12px; }
+    .gallery-grid img { height:230px; }
+    .special-box { padding:24px; }
+    .special-box h2 { font-size:44px; }
+    .price { font-size:58px; }
+    .hero-card .frame { min-height:310px; }
+  }
+
+  .intake-section {
+    background: #fff7fb;
+  }
+  .intake-wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 24px 15px 22px 17px;
+    box-shadow: 9px 10px 0 var(--aqua);
+    padding: 34px;
+    position: relative;
+  }
+  .intake-wrap::before {
+    content:"intake form ✎";
+    position:absolute;
+    top:-18px;
+    left:28px;
+    background:var(--yellow);
+    border:2px solid var(--ink);
+    padding:5px 12px;
+    font-family:'Patrick Hand';
+    font-size:20px;
+    transform:rotate(-2deg);
+  }
+  .intake-intro {
+    max-width: 700px;
+    margin-bottom: 26px;
+  }
+  .intake-intro h2 {
+    font-family:'Patrick Hand';
+    font-size: 52px;
+    line-height: 1;
+    margin: 0 0 10px;
+  }
+  .intake-intro p {
+    line-height:1.65;
+    color:#555;
+    margin:0;
+  }
+  .form-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  .field {
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+  }
+  .field.full {
+    grid-column:1 / -1;
+  }
+  .field label {
+    font-family:'Patrick Hand';
+    font-size:22px;
+    font-weight:700;
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    width:100%;
+    border:2.5px solid var(--ink);
+    border-radius:13px 9px 15px 10px;
+    padding:13px 14px;
+    font:inherit;
+    background:#fff;
+    outline:none;
+    box-shadow:2px 3px 0 rgba(23,23,23,.12);
+  }
+  .field textarea {
+    min-height:120px;
+    resize:vertical;
+  }
+  .check-grid {
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:10px 16px;
+    margin-top:4px;
+  }
+  .check-item {
+    display:flex;
+    align-items:center;
+    gap:9px;
+    background:var(--pink-soft);
+    border:2px solid var(--ink);
+    border-radius:11px 15px 10px 14px;
+    padding:10px 12px;
+    font-weight:800;
+  }
+  .check-item:nth-child(even) {
+    background:var(--aqua-soft);
+  }
+  .check-item input {
+    width:18px;
+    height:18px;
+    accent-color:var(--pink-dark);
+  }
+  .form-note {
+    font-size:13px;
+    color:#666;
+    margin-top:10px;
+  }
+  .submit-row {
+    display:flex;
+    gap:14px;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-top:24px;
+  }
+  .submit-note {
+    font-family:'Patrick Hand';
+    font-size:19px;
+  }
+  @media (max-width:700px) {
+    .form-grid { grid-template-columns:1fr; }
+    .field.full { grid-column:auto; }
+    .check-grid { grid-template-columns:1fr; }
+    .intake-wrap { padding:28px 20px; }
+    .intake-intro h2 { font-size:44px; }
+  }
+
+
+  .intake-wrap { max-width: 760px; }
+  .intake-progress {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin: 22px 0 28px;
+  }
+  .progress-track {
+    flex:1;
+    height:12px;
+    background:#fff;
+    border:2px solid var(--ink);
+    border-radius:9px 6px 10px 7px;
+    overflow:hidden;
+  }
+  .progress-fill {
+    width:10%;
+    height:100%;
+    background:var(--pink);
+    transition:width .25s ease;
+  }
+  .progress-label {
+    min-width:64px;
+    text-align:right;
+    font-family:'Patrick Hand';
+    font-size:20px;
+    font-weight:700;
+  }
+  .intake-step {
+    display:none;
+    min-height:300px;
+    animation:stepIn .22s ease;
+  }
+  .intake-step.active { display:block; }
+  @keyframes stepIn {
+    from { opacity:0; transform:translateY(8px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  .question-number {
+    display:inline-block;
+    font-family:'Patrick Hand';
+    font-size:19px;
+    color:var(--pink-dark);
+    margin-bottom:8px;
+  }
+  .question-title {
+    font-family:'Patrick Hand';
+    font-size:clamp(34px,6vw,48px);
+    line-height:1.05;
+    margin:0 0 22px;
+  }
+  .big-input,
+  .big-select,
+  .big-textarea {
+    width:100%;
+    border:3px solid var(--ink);
+    border-radius:16px 10px 18px 11px;
+    padding:16px 17px;
+    background:#fff;
+    font:inherit;
+    font-size:18px;
+    outline:none;
+    box-shadow:4px 5px 0 rgba(23,23,23,.13);
+  }
+  .big-textarea { min-height:150px; resize:vertical; }
+  .option-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .option-card {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px;
+    background:var(--pink-soft);
+    border:2.5px solid var(--ink);
+    border-radius:14px 9px 16px 10px;
+    cursor:pointer;
+    font-weight:800;
+  }
+  .option-card:nth-child(even) { background:var(--aqua-soft); }
+  .option-card input { width:19px; height:19px; accent-color:var(--pink-dark); }
+  .step-actions {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin-top:28px;
+  }
+  .back-btn {
+    background:transparent;
+    border:0;
+    font-family:'Patrick Hand';
+    font-size:22px;
+    text-decoration:underline 3px wavy var(--aqua);
+    text-underline-offset:5px;
+    cursor:pointer;
+    color:var(--ink);
+  }
+  .back-btn.hidden { visibility:hidden; }
+  .tiny-hint {
+    margin-top:10px;
+    color:#666;
+    font-size:13px;
+  }
+  .finish-card {
+    text-align:center;
+    padding:22px 4px 8px;
+  }
+  .finish-card .big-heart { font-size:64px; }
+  .finish-card h3 {
+    font-family:'Patrick Hand';
+    font-size:48px;
+    margin:8px 0 10px;
+  }
+  @media (max-width:620px) {
+    .option-grid { grid-template-columns:1fr; }
+    .intake-step { min-height:340px; }
+    .step-actions { align-items:flex-end; }
+  }
+
+
+  .photo-placeholder {
+    width:100%;
+    height:330px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+      linear-gradient(135deg, rgba(243,106,164,.10), rgba(142,216,211,.12)),
+      var(--paper);
+    border:2px dashed var(--ink);
+    font-family:'Patrick Hand';
+    font-size:34px;
+    color:#555;
+    text-align:center;
+  }
+  @media (max-width:580px) {
+    .photo-placeholder { height:230px; font-size:28px; }
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topbar">Serving Exeter & Mount Penn • Message for availability ♡</div>
+
+  <nav>
+    <div class="brand"><span class="bee">🐝</span> Katie Did It Cleaning Co.</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#intake">Get a Quote</a>
+      <a href="#contact" class="sketch-btn">Book a Clean ♡</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <span class="eyebrow">Clean homes ♡ happy days</span>
+      <h1>Life's busy.<br><span class="pink">Katie did it.</span></h1>
+      <p>Friendly, detail-focused home cleaning for busy families, working professionals, and anyone who wants more time for what they love.</p>
+      <div class="hero-actions">
+        <a class="sketch-btn" href="#contact">Check Availability ✦</a>
+        <a class="sketch-btn alt" href="#services">See Services →</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="tape"></div>
+      <div class="frame">
+        <div>
+          <div class="mascot">🧹💗</div>
+          <h3>Katie did it,<br>so you don't have to!</h3>
+          <p>Standard cleans • deep cleans • laundry • organizing • add-ons</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about" class="section welcome">
+    <div class="welcome-inner">
+      <div class="note-card">
+        <div style="font-size:34px">♡ ✦</div>
+        <h2>A cleaner home.<br>A lighter you.</h2>
+        <p>The goal is simple: take cleaning off your to-do list and give you back more time. Every service is built around a fresh, comfortable home and the little details that make a difference.</p>
+        <a href="#contact" class="scribble-link">Send a message for a personalized quote →</a>
+      </div>
+
+      <div class="bullets">
+        <div class="bullet"><div>✨</div><strong>Detail Focused</strong><span>Thoughtful cleaning from high-touch surfaces to the spaces that get overlooked.</span></div>
+        <div class="bullet"><div>🏡</div><strong>Home Friendly</strong><span>Services designed around real homes, real routines, and busy schedules.</span></div>
+        <div class="bullet"><div>🧺</div><strong>Helpful Add-ons</strong><span>Laundry, organization, bedding changes, windows and more when you need them.</span></div>
+        <div class="bullet"><div>💗</div><strong>Personal Service</strong><span>A small local cleaning business with a warm, approachable feel.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <div class="section-title">
+      <small>What can Katie help with?</small>
+      <h2>Cleaning services, your way ✦</h2>
+      <p>Choose the kind of reset your home needs. Custom add-ons can be included depending on the job.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service"><div class="icon">🧹</div><h3>Standard Cleaning</h3><p>A fresh, tidy reset for the rooms and surfaces you use every day.</p><a href="#contact" class="scribble-link">Ask about this →</a></article>
+      <article class="service"><div class="icon">✨</div><h3>Deep Cleaning</h3><p>A more detailed top-to-bottom refresh when your home needs extra attention.</p><a href="#contact" class="scribble-link">Ask about this →</a></article>
+      <article class="service"><div class="icon">🧺</div><h3>Laundry</h3><p>Wash, dry, fold, and practical help getting laundry back under control.</p><a href="#contact" class="scribble-link">Ask about this →</a></article>
+      <article class="service"><div class="icon">🧸</div><h3>Tidying & Organization</h3><p>Closets, pantries, small spaces, toys, entryways and everyday clutter.</p><a href="#contact" class="scribble-link">Ask about this →</a></article>
+      <article class="service"><div class="icon">🛏️</div><h3>Bedding Changes</h3><p>Fresh sheets and bedding changes available as a convenient add-on.</p><a href="#contact" class="scribble-link">Ask about this →</a></article>
+      <article class="service"><div class="icon">🪟</div><h3>Windows & More</h3><p>Interior windows, sills, tracks, screens and other custom extras.</p><a href="#contact" class="scribble-link">Ask about this →</a></article>
+    </div>
+  </section>
+
+  <section class="section special">
+    <div class="special-box">
+      <div>
+        <div class="eyebrow">This week's special ♡</div>
+        <h2>Pick one space for a deep clean</h2>
+        <p>Choose a laundry room, mud room, front entryway, or pantry for a focused reset.</p>
+        <ul class="special-list">
+          <li>Cleaning + tidying of the selected space</li>
+          <li>Surface wipe-downs and organization</li>
+          <li>Hard-floor cleaning where applicable</li>
+          <li>Limited appointments available</li>
+        </ul>
+        <a class="sketch-btn" href="#contact">Claim a Spot ✦</a>
+      </div>
+      <div style="text-align:center">
+        <div style="font-family:'Patrick Hand';font-size:26px;">special price</div>
+        <div class="price">$60</div>
+        <div style="font-family:'Patrick Hand';font-size:24px;">a cleaner space = a happier you! ♡</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section">
+    <div class="section-title">
+      <small>From the Katie Did It page</small>
+      <h2>A little peek at the brand ♡</h2>
+      
+    </div>
+
+
+    <div class="gallery-grid">
+      <figure>
+        <div class="photo-placeholder">Photo Here</div>
+        <figcaption>Seasonal specials ✦</figcaption>
+      </figure>
+      <figure>
+        <div class="photo-placeholder">Photo Here</div>
+        <figcaption>Last-minute openings ♡</figcaption>
+      </figure>
+      <figure>
+        <div class="photo-placeholder">Photo Here</div>
+        <figcaption>Services + add-ons</figcaption>
+      </figure>
+      <figure>
+        <div class="photo-placeholder">Photo Here</div>
+        <figcaption>Weekly offers</figcaption>
+      </figure>
+    </div>
+
+  </section>
+
+
+
+  <section id="intake" class="section intake-section">
+    <div class="intake-wrap">
+      <div class="intake-intro">
+        <h2>Tell me what your home needs ♡</h2>
+        <p>A few quick questions so Katie has the important details before reaching back out.</p>
+      </div>
+
+      <div class="intake-progress" aria-label="Form progress">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-label" id="progressLabel">1 / 10</div>
+      </div>
+
+      <form id="intakeForm">
+        <div class="intake-step active">
+          <span class="question-number">Question 1</span>
+          <h3 class="question-title">What's your name? ✎</h3>
+          <input class="big-input" name="name" type="text" placeholder="First and last name" required>
+        </div>
+
+        <div class="intake-step">
+          <span class="question-number">Question 2</span>
+          <h3 class="question-title">What's the best way to reach you?</h3>
+          <input class="big-input" name="contact" type="text" placeholder="Phone number or email" required>
+        </div>
+
+        <div class="intake-step">
+          <span class="question-number">Question 3</span>
+          <h3 class="question-title">What area is your home in? 🏡</h3>
+          <input class="big-input" name="area" type="text" placeholder="Exeter, Mount Penn, etc." required>
+        </div>
+
+        <div class="intake-step">
+          <span class="question-number">Question 4</span>
+          <h3 class="question-title">What kind of home is it?</h3>
+          <select class="big-select" name="homeType">
+            <option value="">Choose one</option>
+            <option>House</option>
+            <option>Apartment</option>
+            <option>Townhome</option>
+            <option>Condo</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="intake-step">
+          <span class="question-number">Question 5</span>
+          <h3 class="question-title">How many bedrooms and bathrooms?</h3>
+          <div class="option-grid">
+            <input class="big-input" name="beds" type="number" min="0" placeholder="Bedrooms">
+            <input class="big-input" name="baths" type="number" min="0" step="0.5" placeholder="Bathrooms">
+          </div>
+        </div>
+
+        <div class="intake-step">
+          <span class="question-number">Question 6</span>
+          <h3 class="question-title">What kind of help are you looking for? ♡</h3>
+          <div class="option-grid">
+            <label class="option-card"><input type="checkbox" name="service" value="Standard Cleaning"> Standard cleaning</label>
+            <label class="option-card"><input type="checkbox" name="service" value="Deep Cleaning"> Deep cleaning</label>
+            <label class="option-card"><input type="checkbox" name="service" value="Laundry"> Laundry</label>
+            <label class="option-card"><input type="checkbox" name="service" value="Organization"> Organization</label>
+            <label class="option-card"><input type="checkbox" name="service" value="Bedding"> Bedding changes</label>
+            <label class="option-card"><input type="checkbox" name="service" value="Windows"> Windows / add-ons</label>
+          </div>
+          <div class="tiny-hint">You can choose more than one.</div>
+        </div>
+
+        <div class="intake-step">
+          <span class="question-number">Question 7</span>
+          <h3 class="question-title">How often would you like cleaning?</h3>
+          <select class="big-select" name="frequency">
+            <option value="">Choose one</option>
+            <option>One-time cleaning</option>
+            <option>Weekly</option>
+            <option>Every other week</option>
+            <option>Monthly</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="intake-step">
+          <span class="question-number">Question 8</span>
+          <h3 class="question-title">When would you prefer the cleaning?</h3>
+          <input class="big-input" name="timing" type="text" placeholder="Example: Saturday morning">
+        </div>
+
+        <div class="intake-step">
+          <span class="question-number">Question 9</span>
+          <h3 class="question-title">What areas need the most attention? ✨</h3>
+          <textarea class="big-textarea" name="focus" placeholder="Pet hair, buildup, kitchen, bathrooms, clutter, appliances, windows, etc."></textarea>
+        </div>
+
+        <div class="intake-step">
+          <span class="question-number">Question 10</span>
+          <h3 class="question-title">Anything Katie should know before arriving?</h3>
+          <textarea class="big-textarea" name="access" placeholder="Pets, parking, gate codes, allergies, special surfaces, access instructions, extra requests, etc."></textarea>
+        </div>
+
+        <div class="intake-step">
+          <div class="finish-card">
+            <div class="big-heart">💗</div>
+            <h3>You're all set!</h3>
+            <p>Katie now has the details she needs to understand your request without a bunch of back-and-forth.</p>
+            <button type="submit" class="sketch-btn">Send My Details ♡</button>
+            <div class="tiny-hint"></div>
+          </div>
+        </div>
+
+        <div class="step-actions" id="stepActions">
+          <button type="button" class="back-btn hidden" id="backBtn">← Back</button>
+          <button type="button" class="sketch-btn" id="nextBtn">Next Question →</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="contact" class="cta">
+    <h2>Ready to get cleaning off your to-do list?</h2>
+    <p>Message Katie Did It Cleaning Co. to ask about availability, pricing, or a personalized quote for your home.</p>
+    <a class="sketch-btn" href="mailto:katiediditcleaningco@gmail.com">Email Katie ♡</a>
+  </section>
+
+  <footer>
+    <div><strong>Katie Did It Cleaning Co.</strong> • Exeter & Mount Penn Area</div>
+    <div>Clean homes ♡ happy days</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const form = document.getElementById('intakeForm');
+  if (!form) return;
+
+  const steps = Array.from(form.querySelectorAll('.intake-step'));
+  const nextBtn = document.getElementById('nextBtn');
+  const backBtn = document.getElementById('backBtn');
+  const actions = document.getElementById('stepActions');
+  const fill = document.getElementById('progressFill');
+  const label = document.getElementById('progressLabel');
+  let current = 0;
+  const questionCount = steps.length - 1;
+
+  function showStep(index){
+    steps.forEach((step, i) => step.classList.toggle('active', i === index));
+    current = index;
+
+    if (index < questionCount) {
+      fill.style.width = (((index + 1) / questionCount) * 100) + '%';
+      label.textContent = (index + 1) + ' / ' + questionCount;
+      actions.style.display = 'flex';
+      backBtn.classList.toggle('hidden', index === 0);
+      nextBtn.textContent = index === questionCount - 1 ? 'Review My Details →' : 'Next Question →';
+    } else {
+      fill.style.width = '100%';
+      label.textContent = 'Done ♡';
+      actions.style.display = 'none';
+    }
+
+    const first = steps[index].querySelector('input, select, textarea');
+    if (first) setTimeout(() => first.focus({preventScroll:true}), 120);
+  }
+
+  function validCurrentStep(){
+    const required = Array.from(steps[current].querySelectorAll('[required]'));
+    for (const field of required) {
+      if (!field.value.trim()) {
+        field.reportValidity();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (!validCurrentStep()) return;
+    if (current < steps.length - 1) showStep(current + 1);
+  });
+
+  backBtn.addEventListener('click', () => {
+    if (current > 0) showStep(current - 1);
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Thanks! Your details are ready to send to Katie.');
+  });
+
+  form.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && current < questionCount) {
+      e.preventDefault();
+      nextBtn.click();
+    }
+  });
+
+  showStep(0);
+})();
+</script>
+
+</body>
+</html>
